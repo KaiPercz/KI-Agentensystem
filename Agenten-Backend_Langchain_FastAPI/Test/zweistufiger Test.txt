@@ -1,0 +1,9 @@
+curl -X POST http://localhost:7860/ask \
+     -H "Content-Type: application/json" \
+     -d '{"question":"Wer ist Angela Merkel?"}'
+
+
+curl -X POST http://localhost:7860/ask \
+     -H "Content-Type: application/json" \
+     -d '{"question":"Wann wurde sie geboren?"}'
+
