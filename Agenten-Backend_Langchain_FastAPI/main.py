@@ -42,4 +42,3 @@ class AskResponse(BaseModel):
 def ask_agent(req: AskRequest):
     response = agent.run(req.question)
     return AskResponse(answer=response)
-

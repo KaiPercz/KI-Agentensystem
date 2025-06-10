@@ -96,17 +96,18 @@ Ein lokal lauffähiges Backend, das:
 ```bash
 pkg update && pkg upgrade
 pkg install python git
-pip install --upgrade pip
 ```
 
 ### 2. Repository klonen (bzw. Projektstruktur kopieren)
 
 ```bash
-git clone https://github.com/dein-benutzername/agenten-backend.git
-cd agenten-backend
+git clone https://github.com/KaiPercz/KI-Agentensystem.git
+cd KI-Agentensystem
+cd Agenten-Backend_Langchain_FastAPI
 ```
 
 ### 3. Abhängigkeiten installieren
+je nach verwendeten Modell wird das eine ganze Zeit benötigen...
 
 ```bash
 pip install -r requirements.txt
