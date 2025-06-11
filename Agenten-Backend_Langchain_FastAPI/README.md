@@ -95,7 +95,20 @@ Ein lokal lauffähiges Backend, das:
 
 ```bash
 pkg update && pkg upgrade
-pkg install python git
+pkg install -y \
+  python \
+  clang \
+  libffi \
+  openssl \
+  openssl-tool \
+  libjpeg-turbo \
+  python-pip \
+  freetype \
+  pkg-config \
+  python-numpy \
+  libcrypt \
+  git
+
 ```
 
 ### 2. Repository klonen (bzw. Projektstruktur kopieren)
@@ -107,16 +120,23 @@ cd Agenten-Backend_Langchain_FastAPI
 ```
 
 ### 3. Abhängigkeiten installieren
-je nach verwendeten Modell wird das eine ganze Zeit benötigen...
+je nach verwendeten Modell wird das eine ganze Zeit (> 3 Stunden) benötigen...
 
 ```bash
+pip install --upgrade setuptools wheel
 pip install -r requirements.txt
 ```
 
-### 4. OpenAI API Key setzen (z. B. temporär)
+### 4. OpenAI API Key setzen 
 
+z.B. temporär:
 ```bash
 export OPENAI_API_KEY=sk-...
+```
+
+oder in der .env Datei:
+```bash
+OPENAI_API_KEY=sk-...
 ```
 
 ### 5. Server starten
