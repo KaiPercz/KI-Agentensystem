@@ -150,7 +150,7 @@ uvicorn main:app --host 0.0.0.0 --port 7860
 Du kannst nun per HTTP auf den Agenten zugreifen:
 
 ```bash
-curl -X POST http://localhost:7860/ask -H "Content-Type: application/json" -d '{"question": "Was ist die Hauptstadt von Kanada?"}'
+curl -X POST http://localhost:7860/ask -H "Content-Type: application/json" -d '{"question": "Wie funktioniert das Periodensystem?", "session_id": "kai123"}'
 ```
 
 ---
