@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+langchain>=0.1.0
+openai
+duckduckgo-search
+sympy
+python-dotenv
+
