@@ -118,7 +118,7 @@ pkg install -y \
 ```bash
 git clone https://github.com/KaiPercz/KI-Agentensystem.git
 cd KI-Agentensystem
-cd Agenten-Backend_Langchain_FastAPI
+cd Agenten-Backend_Termux
 ```
 
 ### 3. Abhängigkeiten installieren
@@ -158,7 +158,7 @@ curl -X POST http://localhost:7860/ask -H "Content-Type: application/json" -d '{
 ## 📁 Projektstruktur (aktuell)
 
 ```text
-Agenten-Backend_Langchain_FastAPI/
+Agenten-Backend_Termux/
 ├── main.py           # FastAPI-App mit Agentenlogik
 ├── requirements.txt  # Paketliste
 ├── README.md         # Projektdokumentation
