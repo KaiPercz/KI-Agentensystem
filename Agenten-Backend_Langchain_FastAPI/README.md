@@ -8,10 +8,12 @@ Dieses Projekt verfolgt das Ziel, ein **modulares Agentensystem** auf Basis von 
 
 Ein lokal lauffähiges Backend, das:
 
-* Anfragen an einen KI-Agenten über HTTP erlaubt
-* Werkzeuge ("Tools") zur Informationsbeschaffung, Berechnung etc. nutzt
-* Mit Gedächtnis arbeitet, um Kontexte zu erkennen
-* Später mehrere Agentenrollen und ein Event-basiertes System integrieren kann
+- Anfragen an einen KI-Agenten über HTTP erlaubt
+- Werkzeuge ("Tools") zur Informationsbeschaffung, Berechnung etc. nutzt
+- Mit Gedächtnis arbeitet, um Kontexte zu erkennen
+- Mehrere Agentenrollen und ein Event-basiertes System integrieren kann
+- Sitzungsbasiert pro Nutzer interagiert (UUID)
+- Dialogverläufe speicherbar und ladbar macht
 
 ---
 
@@ -22,7 +24,7 @@ Ein lokal lauffähiges Backend, das:
         |
     [FastAPI REST-Backend]
         |
-    [LangChain Agent]
+    [LangChain Agent pro Session/UUID]
         |
   +-----+------+----------------+
   |            |                |
@@ -53,14 +55,14 @@ Ein lokal lauffähiges Backend, das:
 * Agent-Typ: `CONVERSATIONAL_REACT_DESCRIPTION`
 * Versteht Bezüge innerhalb einer Session
 
+### ✅ Phase 3b: Sitzungsverwaltung (NEU)
+- Mehrere Nutzer/Sitzungen über UUID
+- Separate Agenten/Memories je Sitzung
+- Dialogverlauf als JSON-Datei speicher- und ladbar
+
 ---
 
 ## 🔜 Geplante Erweiterungen
-
-### 🔄 Phase 3b: Sessionverwaltung
-
-* Mehrere Nutzer/Sitzungen unterstützen (UUIDs)
-* Speicherbare Dialogverläufe als JSON
 
 ### 🧭 Phase 4: Agentenrollen & Event-System
 
@@ -156,10 +158,11 @@ curl -X POST http://localhost:7860/ask -H "Content-Type: application/json" -d '{
 ## 📁 Projektstruktur (aktuell)
 
 ```text
-agenten-backend/
+Agenten-Backend_Langchain_FastAPI/
 ├── main.py           # FastAPI-App mit Agentenlogik
 ├── requirements.txt  # Paketliste
-└── README.md         # Projektdokumentation
+├── README.md         # Projektdokumentation
+├── sessions/         # Sitzungsbezogene JSON-Dateien
 ```
 
 ---
@@ -170,5 +173,5 @@ Diese Datei wird mit jeder Entwicklungsphase erweitert, um Struktur, Zielbild un
 
 ---
 
-Letzter Stand: Phase 3 – Agent mit Memory
+Letzter Stand: Unterstützung für mehrere Nutzer/Sitzungen (UUID-basiert) und speicherbare Dialogverläufe als JSON.
 
