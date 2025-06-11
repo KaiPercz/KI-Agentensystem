@@ -31,6 +31,8 @@ cd KI-Agentensystem
 cd Agenten-Backend_Ubuntu
 ```
 
+⚠️ Wichtig: Bitte installiere alle Python-Abhängigkeiten innerhalb einer virtuellen Umgebung. Globale Installationen sind aufgrund des Sicherheitsmechanismus externally-managed-environment nicht erlaubt.
+
 ### 3. Projektstruktur einrichten
 ```bash
 python3 -m venv venv
@@ -50,13 +52,27 @@ chmod 600 .openai_key
 echo ".openai_key" >> .gitignore
 ```
 
-### 6. Python-Abhängigkeiten installieren
+### 6. Umgebung initialisieren
+```bash
+source ./venv/bin/activate
+```
+
+### 7. Python-Abhängigkeiten installieren
 ```bash
 pip install --upgrade pip setuptools wheel
 pip install -r requirements.txt
 ```
 
-### 7. Backend starten
+### 8. Ergebnis prüfen
+```bash
+which python
+# sollte in ./venv/... enden
+
+pip list
+# zeigt nur lokal installierte Pakete
+```
+
+### 9. Backend starten
 ```bash
 uvicorn main:app --host 0.0.0.0 --port 7860
 ```

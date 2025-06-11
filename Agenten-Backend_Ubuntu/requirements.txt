@@ -1,5 +1,5 @@
 fastapi
-uvicorn[standard]
+uvicorn
 langchain>=0.1.0
 openai
 duckduckgo-search
