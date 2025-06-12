@@ -60,6 +60,7 @@ source ./venv/bin/activate
 ### 7. Python-Abhängigkeiten installieren
 ```bash
 pip install --upgrade pip setuptools wheel
+pip install -U langchain-community
 pip install -r requirements.txt
 ```
 

@@ -1,0 +1,22 @@
+# direnv
+.direnv/
+.envrc
+
+# venv
+venv/
+
+# Buildozer generierte Dateien
+INFO Building.txt
+bin/
+.buildozer/
+*.apk
+
+# Python-Cache
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE/Editoren
+.vscode/
+*.swp
+

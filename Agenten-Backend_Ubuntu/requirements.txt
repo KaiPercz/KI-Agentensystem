@@ -1,6 +1,11 @@
 fastapi
-uvicorn
-langchain>=0.1.0
+uvicorn[standard]
+
+# LangChain
+langchain
+langchain-community
+langchain-openai
+
 openai
 duckduckgo-search
 sympy

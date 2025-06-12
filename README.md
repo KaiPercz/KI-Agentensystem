@@ -6,3 +6,16 @@ a) 📘 Agenten-Backend mit LangChain und FastAPI (Termux-kompatibel)
 
 ---
 b) 📘 Agenten-Backend mit LangChain und FastAPI (Ubuntu-kompatibel)
+
+c) 📘 Agenten-Backend für Android entwickelt auf Ubuntu Umgebungen
+
+
+nächste Schritte
+a)
+- xx
+
+b)
+- xx
+
+c) 
+- ein direkt einsetzbares Projektgerüst als ZIP-Datei 

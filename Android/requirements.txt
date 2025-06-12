@@ -1,0 +1,5 @@
+kivy[base]
+kivymd
+cython
+buildozer
+

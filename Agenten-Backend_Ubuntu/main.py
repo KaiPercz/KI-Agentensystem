@@ -1,101 +1,91 @@
-import os
-import json
-from uuid import uuid4
 from fastapi import FastAPI, Request
 from pydantic import BaseModel
-from langchain.llms import OpenAI
-from langchain.agents import initialize_agent, Tool
-from langchain.agents.agent_types import AgentType
-from langchain.chains import LLMMathChain
-from langchain.tools import DuckDuckGoSearchRun
-from langchain.memory import ConversationBufferMemory
+from uuid import UUID
+import os
+import json
+from typing import Dict
 
-# 📁 Speicherverzeichnis für Sessions
+from langchain_community.llms import OpenAI
+from langchain.agents import initialize_agent, Tool, AgentType
+from langchain_community.tools import DuckDuckGoSearchRun
+from langchain_community.chains.llm_math.base import LLMMathChain
+
+# 🔁 Ab LangChain v0.1.13 muss langchain_community genutzt werden
+from langchain_community.llms import OpenAI as CommunityOpenAI
+from langchain_community.tools import DuckDuckGoSearchRun as CommunitySearch
+
+app = FastAPI()
+
+# 🧠 In-Memory-Verwaltung aller Sessions
+sessions: Dict[str, Dict] = {}
+
+# 📁 Session-Dateien speichern in diesem Ordner
 SESSION_DIR = "sessions"
 os.makedirs(SESSION_DIR, exist_ok=True)
 
-# 📦 FastAPI App
-app = FastAPI()
+# 🔑 OpenAI-Key aus ENV holen (ggf. .env nutzen)
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
-# 🧠 Tools initialisieren
-llm = OpenAI(temperature=0)
-search = DuckDuckGoSearchRun()
-llm_math = LLMMathChain(llm=llm, verbose=False)
-
-tools = [
-    Tool(
-        name="DuckDuckGo Search",
-        func=search.run,
-        description="Nützlich für Web-Recherchen"
-    ),
-    Tool(
-        name="Rechner",
-        func=llm_math.run,
-        description="Für mathematische Berechnungen"
-    )
-]
-
-# 🧾 Session-Modell
 class AskRequest(BaseModel):
     question: str
-    session_id: str | None = None
+    session_id: str  # UUID in String-Form
 
-# 🧠 Agenten-Speicher pro Sitzung
-agent_sessions = {}
-
-# 🔁 Lade gespeicherte Verläufe (falls vorhanden)
-def load_or_create_agent(session_id: str):
-    if session_id in agent_sessions:
-        return agent_sessions[session_id]
+def create_agent(session_id: str):
+    # Tools und LLM initialisieren
+    search = CommunitySearch()
+    llm = CommunityOpenAI(temperature=0, openai_api_key=OPENAI_API_KEY)
+    tools = [
+        Tool(
+            name="Search",
+            func=search.run,
+            description="Search engine for current information."
+        ),
+        Tool(
+            name="Calculator",
+            func=LLMMathChain(llm=llm).run,
+            description="Useful for mathematical calculations."
+        )
+    ]
 
     memory = ConversationBufferMemory(memory_key="chat_history")
-    session_file = os.path.join(SESSION_DIR, f"{session_id}.json")
-
-    # Verlauf wiederherstellen
-    if os.path.exists(session_file):
-        with open(session_file, "r") as f:
-            data = json.load(f)
-            for m in data.get("memory", []):
-                memory.chat_memory.add_user_message(m["user"])
-                memory.chat_memory.add_ai_message(m["ai"])
 
     agent = initialize_agent(
-        tools,
-        llm,
+        tools=tools,
+        llm=llm,
         agent=AgentType.CONVERSATIONAL_REACT_DESCRIPTION,
         memory=memory,
         verbose=False
     )
 
-    agent_sessions[session_id] = agent
-    return agent
+    return {"agent": agent, "memory": memory}
 
-# 💾 Speicherfunktion
 def save_session(session_id: str):
-    agent = agent_sessions.get(session_id)
-    if not agent:
-        return
+    session_data = sessions[session_id]
+    memory = session_data["memory"]
+    filepath = os.path.join(SESSION_DIR, f"{session_id}.json")
+    with open(filepath, "w") as f:
+        json.dump(memory.chat_memory.messages, f, default=str, indent=2)
 
-    history = agent.memory.chat_memory.messages
-    memory_dump = []
-    for i in range(0, len(history), 2):
-        user_msg = history[i].content if i < len(history) else ""
-        ai_msg = history[i+1].content if i+1 < len(history) else ""
-        memory_dump.append({"user": user_msg, "ai": ai_msg})
+def load_session(session_id: str):
+    filepath = os.path.join(SESSION_DIR, f"{session_id}.json")
+    if os.path.exists(filepath):
+        with open(filepath, "r") as f:
+            messages = json.load(f)
+        return messages
+    return []
 
-    with open(os.path.join(SESSION_DIR, f"{session_id}.json"), "w") as f:
-        json.dump({"memory": memory_dump}, f, indent=2)
-
-# 🚦 API Endpoint
 @app.post("/ask")
-async def ask(request: AskRequest):
-    session_id = request.session_id or str(uuid4())
-    agent = load_or_create_agent(session_id)
-    response = agent.run(request.question)
-    save_session(session_id)
-    return {"session_id": session_id, "response": response}
+def ask(request: AskRequest):
+    session_id = request.session_id
 
-# ❤️‍🔥 Root-Test
-@app.get("/")
-def root():
-    return {"message": "Agenten-Backend läuft."}
+    if session_id not in sessions:
+        sessions[session_id] = create_agent(session_id)
+
+    agent = sessions[session_id]["agent"]
+
+    try:
+        answer = agent.run(input=request.question)
+        save_session(session_id)
+        return {"answer": answer}
+    except Exception as e:
+        return {"error": str(e)}
