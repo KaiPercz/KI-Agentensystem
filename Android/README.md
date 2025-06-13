@@ -43,17 +43,32 @@ ggf. müssen die Rechte vor der Ausführung angepasst werden
 sudo apt install openjdk-11-jdk
 sudo apt remove --purge gradle
 rm -rf ~/.buildozer/android/platform/gradle*
-cd /opt
-sudo wget https://services.gradle.org/distributions/gradle-7.4.2-bin.zip
-sudo unzip gradle-7.4.2-bin.zip
-sudo ln -sfn /opt/gradle-7.4.2 /opt/gradle
-echo 'export PATH="/opt/gradle/bin:$PATH"' >> ~/.bashrc
+cd ~/.buildozer/android/platform
+wget https://services.gradle.org/distributions/gradle-7.4.2-bin.zip
+unzip gradle-7.4.2-bin.zip
+rm  gradle-7.4.2-bin.zip
+ln -sfn ~/.buildozer/android/platform/gradle-7.4.2 ~/.buildozer/android/platform/gradle
+echo 'export PATH="~/.buildozer/android/platform/bin:$PATH"' >> ~/.bashrc
 source ~/.bashrc
 
 chmod +x setup_buildozer.sh
 cd ..
 ./Template/setup_buildozer.sh
 ```
+
+SDK-Tools installieren
+export ANDROIDSDK=$HOME/.buildozer/android/platform/android-sdk
+export ANDROID_SDK_ROOT=$HOME/.buildozer/android/platform/android-sdk/
+mkdir -p $HOME/.buildozer/android/platform/android-sdk/cmdline-tools/latest
+cd $HOME/.buildozer/android/platform/android-sdk/cmdline-tools/latest
+curl -O https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip
+unzip commandlinetools-linux-*.zip
+rm $HOME/.buildozer/android/platform/android-sdk/cmdline-tools/latest/commandlinetools-linux-7583922_latest.zip
+export PATH=$HOME/.buildozer/android/platform/android-sdk/cmdline-tools/latest/cmdline-tools/bin/:$HOME/.buildozer/android/platform/android-sdk/cmdline-tools/latest/tools/:$PATH
+
+Fehlende Versionen installieren
+sdkmanager "platforms;android-31" "build-tools;31.0.0" --sdk_root=~/.buildozer/android/platform/android-sdk/
+
 
 Repository klonen (bzw. Projektstruktur kopieren)
 ```bash
