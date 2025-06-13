@@ -7,7 +7,7 @@ a) 📘 Agenten-Backend mit LangChain und FastAPI (Termux-kompatibel)
 ---
 b) 📘 Agenten-Backend mit LangChain und FastAPI (Ubuntu-kompatibel)
 
-c) 📘 Agenten-Backend für Android entwickelt auf Ubuntu Umgebungen
+c) 📘 Agenten-Backend für Android, entwickelt auf Ubuntu Umgebungen
 
 
 nächste Schritte

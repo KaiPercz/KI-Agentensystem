@@ -41,6 +41,15 @@ im Repository befindet sich die Setup Routine: KI-Agentensystem/Android/Template
 ggf. müssen die Rechte vor der Ausführung angepasst werden
 ```bash
 sudo apt install openjdk-11-jdk
+sudo apt remove --purge gradle
+rm -rf ~/.buildozer/android/platform/gradle*
+cd /opt
+sudo wget https://services.gradle.org/distributions/gradle-7.4.2-bin.zip
+sudo unzip gradle-7.4.2-bin.zip
+sudo ln -sfn /opt/gradle-7.4.2 /opt/gradle
+echo 'export PATH="/opt/gradle/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+
 chmod +x setup_buildozer.sh
 cd ..
 ./Template/setup_buildozer.sh

@@ -1,5 +1,5 @@
 kivy[base]
 kivymd
-cython
+cython==0.29.33
 buildozer
 
