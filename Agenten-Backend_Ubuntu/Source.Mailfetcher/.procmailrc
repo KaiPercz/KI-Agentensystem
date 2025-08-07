@@ -1,0 +1,19 @@
+# .procmailrc Konfiguration
+
+# Umgebungsvariablen für procmail setzen
+PATH=/usr/bin:/bin:/usr/local/bin:$HOME/bin
+SHELL=/bin/bash
+LOGFILE=$HOME/log/procmail.log  # Logdatei für procmail-Aktivitäten
+
+# Standard-Postfach (falls das Skript fehlschlägt, landet die Mail hier)
+DEFAULT=$HOME/Mail/inbox
+
+# Regel: JEDE E-Mail an das Verarbeitungsskript weiterleiten
+# Das Pipe-Symbol '|' leitet den gesamten E-Mail-Body an stdin des Skripts
+:0
+* (^To:|^Cc:|^Delivered-To:).*test@ai\.percz\.de
+{
+    :0
+    | /home/mailfetcher/bin/process_email.sh
+}
+

@@ -1,0 +1,11 @@
+/home/mailfetcher/log/fetchmail.log
+/home/mailfetcher/log/procmail.log {
+    su mailfetcher mailfetcher
+    rotate 5
+    daily
+    missingok
+    notifempty
+    compress
+    delaycompress
+    copytruncate
+}

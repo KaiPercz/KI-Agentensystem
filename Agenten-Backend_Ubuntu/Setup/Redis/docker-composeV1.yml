@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  redis:
+    image: 'redis:7-alpine' # Nutzt ein schlankes Alpine-basiertes Redis-Image
+    container_name: langflow-redis-memory
+    ports:
+      - '6379:6379' # Port-Mapping: Host-Port:Container-Port
+    volumes:
+      - redis_data:/data # Benanntes Volumen für Datenpersistenz
+    command: redis-server --appendonly yes # Aktiviert AOF für Datenpersistenz
+    restart: unless-stopped # Startet den Container automatisch neu, falls er stoppt
+
+volumes:
+  redis_data: # Definition des benannten Volumens

@@ -1,0 +1,3 @@
+API_URL="http://127.0.0.1:1880/api/v1/email"
+LANGFLOW_API_KEY="Dein richtiger Schlüssel"
+TIKA_JAR="/home/mailfetcher/bin/tika-app-2.9.2.jar"

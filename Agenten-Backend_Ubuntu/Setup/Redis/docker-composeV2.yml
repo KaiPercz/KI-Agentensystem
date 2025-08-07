@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  redis-stack:
+    image: 'redis/redis-stack:latest' # Nutzt das Redis Stack Image
+    container_name: langflow-redis-stack-memory
+    ports:
+      - '6379:6379' # Redis-Server Port
+      - '8001:8001' # RedisInsight UI Port
+    volumes:
+      - redis_stack_data:/data # Benanntes Volumen für Datenpersistenz
+    environment:
+      # Optional: Wenn du ein Passwort für Redis setzen möchtest (empfohlen für Nicht-Dev-Umgebungen)
+      # - REDIS_ARGS="--requirepass your_strong_password" 
+    restart: unless-stopped
+
+volumes:
+  redis_stack_data: # Definition des benannten Volumens
