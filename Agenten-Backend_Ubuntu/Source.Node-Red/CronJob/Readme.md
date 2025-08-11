@@ -43,6 +43,10 @@ Es handelt sich **nicht** um die Beantwortung der Anfrage selbst, sondern aussch
 4. Anzeige: Das generierte Template wird in einem Frontend dargestellt (z. B. im Browser, Dashboard oder über eine API verfügbar gemacht).
 
 
+### Ablauf des Cronjobs im Backend Node-Red
+![Prozess Modell](Cronjob.png)
+
+
 💡 Verwendungsszenarien
 - Fortschrittsanzeige in Benutzer-Dashboards
 - Transparente Einsicht in Status und Ergebnisse von Agentenprozessen

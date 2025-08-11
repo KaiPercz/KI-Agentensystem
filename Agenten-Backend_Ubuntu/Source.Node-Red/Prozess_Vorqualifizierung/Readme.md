@@ -60,6 +60,9 @@ Parallel:
 7. Fehlerbehandlung: Bei Fehlern wird eine Fehlermeldung erzeugt und geloggt.
 8. Ergebnis: Der finale Zustand (Erfolg oder Fehler) wird am Ende des Flows bereitgestellt.
 
+dazu bereitgestellte Flows im Backend Node-Red
+![Prozess Modell](Vorqualifizierung.png)
+
 
 📊 Dynamisches Routing (Agentenlogik)
 | Klassifikation | Ziel-Agent  |

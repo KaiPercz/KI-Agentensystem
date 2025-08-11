@@ -99,6 +99,10 @@ testmail
  - Es werden 5 Generationen aufbewahrt (rotate 5)
  - Alte Logs werden komprimiert (.gz)
 
+## Prozess für die EMail Verarbeitung im Backend
+![Prozess Bild](EMailVerarbeitung.png)
+
+
 🗺️ Roadmap
 
 | Thema                                                       | Beschreibung                                                                                           | Status                             |

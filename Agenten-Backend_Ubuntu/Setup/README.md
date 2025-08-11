@@ -84,3 +84,6 @@ curl -X POST http://localhost:7860/ask \
      -H "Content-Type: application/json" \
      -d '{"question": "Was ist die Hauptstadt von Kanada?", "session_id": "demo-uuid"}'
 ```
+
+### 10. weitere Komponenten für das Backend
+![Komponenten Modell](KomponentenModell.png)

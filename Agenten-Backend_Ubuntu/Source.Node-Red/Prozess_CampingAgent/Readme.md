@@ -42,6 +42,9 @@ Dieser Node-RED-Flow verarbeitet Antworten eines spezialisierten „TravelAgent�
 6. Logging: Session-ID und relevante Daten werden in der TestDB protokolliert.
 7. Optionale Anzeige: Die Antwort Reise Agent kann für Debug oder UI weiterverwendet werden.
 
+dazu bereitgestellte Flows im Backend Node-Red
+![Prozess Modell](CampingAgent.png)
+
 
 ✉️ E-Mail-Handling
 Die Komponente HTML Mail senden nutzt strukturierte, vorbereitete Daten, um dem Benutzer eine ansprechend formatierte Antwort zu liefern. Mögliche Inhalte:

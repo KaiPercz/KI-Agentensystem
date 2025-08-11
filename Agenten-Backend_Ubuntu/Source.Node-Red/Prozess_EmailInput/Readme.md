@@ -56,6 +56,9 @@ Dieser Node-RED-Flow verarbeitet eingehende E-Mails automatisiert. Ziel ist es, 
 8. Protokollierung aller Aktionen und Ergebnisse.
 9. Ergebnisübermittlung an einen nachfolgenden Prozess oder eine Statusanzeige.
 
+dazu bereitgestellte Flows im Backend Node-Red
+![Prozess Modell](EMailInput.png)
+
 🛠️ Erweiterungsideen (Roadmap)
 
 | Thema                                         | Status               |
