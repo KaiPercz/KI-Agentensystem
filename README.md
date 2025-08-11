@@ -104,6 +104,35 @@ Der aktuelle Prototyp zeigt eine funktionierende Ende-zu-Ende-Verarbeitung von E
 Node-RED übernimmt dabei die **Prozesssteuerung**, Langflow die **KI-Verarbeitung**.
 Zukünftige Erweiterungen zielen auf **höhere Flexibilität**, **umfangreichere Datenverarbeitung** und **bessere Steuerbarkeit** ab.
 
+***
 
+## **Projektbeschreibung: KI-gestützter E-Mail-Triggerprozess mit Node-RED und Langflow**
 📘 Agenten-Backend für Android, entwickelt auf der Ubuntu Umgebungen im Verzeichnis "Android"
-Status: on hold (Integration im oben stehenden Projekt)
+
+### **1. Ausgangslage und Zielsetzung**
+
+Das Projekt zielt darauf ab, die Funktionalität auf einem Android basierendem Gerät zu portieren. Das ist mit dem Einsatz von Node-Red gewährleistet, sodass nachfolgend spezifische Installationsbedingungen für diese Plattform dokumentiert werden.
+
+---
+
+### **2. Derzeitiger Implementierungsstand (on hold)**
+Mit Ausnahme vom Setup, erfolgt eine Abbildung im vorher stehenden Projekt
+
+***
+
+## **Projektbeschreibung: KI-gestützter E-Mail-Triggerprozess mit Node-RED und langchain.js als Erweiterung für Node-Red**
+📘 Agenten-Backend mit Node-Red und spezifischen selbst entwickelten Erweiterungen basierend auf langchain.js im Verzeichnis "Agenten-Backend"
+
+### **1. Ausgangslage und Zielsetzung**
+
+Das Projekt zielt darauf ab, eingehende E-Mails automatisiert zu verarbeiten, deren Inhalte zu analysieren und durch geeignete KI-Agenten beantworten zu lassen. Dabei steht die flexible, modulare und erweiterbare Prozessgestaltung im Vordergrund, um sowohl strukturierte als auch unstrukturierte Daten effizient zu verarbeiten.
+
+---
+
+### **2. Derzeitiger Implementierungsstand (angestrebtes Zielsystem)**
+in Planung
+
+
+
+
+
